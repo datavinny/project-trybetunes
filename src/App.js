@@ -1,9 +1,15 @@
 import React from 'react';
+import Pages from './pages';
 
 class App extends React.Component {
   render() {
-    return (<p>TrybeTunes</p>);
+    return (
+      <div>
+        <p>TrybeTunes</p>
+        <Pages />
+      </div>
+    );
   }
 }
-// modificado
+
 export default App;
