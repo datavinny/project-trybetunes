@@ -37,7 +37,7 @@ class Search extends Component {
     this.setState({ albums: arrAlbums });
     if (arrAlbums.length > 0) {
       this.setState({ isAlbumEmpty: false });
-      this.setState({ artistName: arrAlbums[0].artistName, isLoading: false });
+      this.setState({ artistName: pesquisa, isLoading: false });
     } else {
       this.setState({ isAlbumEmpty: true, isLoading: false });
     }
