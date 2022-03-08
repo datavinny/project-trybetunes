@@ -2,11 +2,11 @@ import React, { Component } from 'react';
 import { BrowserRouter, Redirect, Route } from 'react-router-dom';
 import Login from './Login';
 import Search from './search';
-// import Album from './Album';
-// import Favorites from './Favorites';
-// import Profile from './Profile';
-// import ProfileEdit from './ProfileEdit';
-// import NotFound from './NotFound';
+import Album from './Album';
+import Favorites from './Favorites';
+import Profile from './Profile';
+import ProfileEdit from './ProfileEdit';
+import NotFound from './NotFound';
 
 class Pages extends Component {
   constructor() {
@@ -29,7 +29,7 @@ class Pages extends Component {
         <div data-testid="page-search">
           <Route path="/search" component={ Search } />
         </div>
-        {/* <div data-testid="page-album">
+        <div data-testid="page-album">
           <Route path="/album/:id" component={ Album } />
         </div>
         <div data-testid="page-favorites">
@@ -43,7 +43,7 @@ class Pages extends Component {
         </div>
         <div data-testid="page-not-found">
           <Route path="" component={ NotFound } />
-        </div> */}
+        </div>
       </BrowserRouter>
     );
   }
