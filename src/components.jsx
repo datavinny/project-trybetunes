@@ -19,6 +19,7 @@ class Header extends Component {
     this.setState({ isLoading: true }, getUser());
     const userName = getUser();
     this.setState({ userName });
+    console.log(userName);
   }
 
   render() {

@@ -26,12 +26,12 @@ class Login extends Component {
     }
   }
 
-  enviarNome({ target }) {
+  async enviarNome({ target }) {
     const loginName = target.parentElement.children[0].value;
-    this.setState({ isLoading: true }, () => createUser({ name: loginName }));
-    const { logado } = this.props;
-    this.setState({ logado: true });
-    console.log(logado);
+    await this.setState({ isLoading: true }, () => createUser({ name: loginName }));
+    this.setState({ isLoading: false });
+    const { setUserIn } = this.props;
+    setUserIn();
   }
 
   render() {
@@ -60,7 +60,7 @@ class Login extends Component {
 }
 
 Login.propTypes = {
-  logado: propTypes.bool.isRequired,
+  setUserIn: propTypes.func.isRequired,
 };
 
 export default Login;

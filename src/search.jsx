@@ -67,10 +67,10 @@ class Search extends Component {
               { isAlbumEmpty ? <p>Nenhum álbum foi encontrado</p>
                 : (
                   <>
-                    <h3>
+                    <h2>
                       Resultado de álbuns de:
                       {artist}
-                    </h3>
+                    </h2>
                     <div>
                       {albums.map(({ collectionName, collectionId, trackCount }) => (
                         <div key={ trackCount }>
@@ -78,7 +78,7 @@ class Search extends Component {
                             {collectionName}
                           </p>
                           <Link
-                            to="/search"
+                            to={ `/album/${collectionId}` }
                             data-testid={ `link-to-album-${collectionId}` }
                           />
                         </div>

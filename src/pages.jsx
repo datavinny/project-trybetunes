@@ -13,17 +13,24 @@ class Pages extends Component {
     super(props);
 
     this.state = {
-      logado: false,
+      isUserLoggedIn: false,
     };
+
+    this.setUserIn = this.setUserIn.bind(this);
+  }
+
+  setUserIn() {
+    this.setState({ isUserLoggedIn: true });
   }
 
   render() {
-    const { logado } = this.state;
+    const { isUserLoggedIn } = this.state;
     return (
       <BrowserRouter>
         <div data-testid="page-login">
           <Route exact path="/">
-            {logado ? <Redirect to="/search" /> : <Login logado={ logado } />}
+            {isUserLoggedIn ? <Redirect to="/search" />
+              : <Login setUserIn={ this.setUserIn } />}
           </Route>
         </div>
         <div data-testid="page-search">
