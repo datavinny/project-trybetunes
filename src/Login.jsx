@@ -4,8 +4,8 @@ import { createUser } from './services/userAPI';
 import Loading from './loading';
 
 class Login extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.state = {
       isLoginBtnDisable: true,
@@ -29,7 +29,6 @@ class Login extends Component {
   enviarNome({ target }) {
     const loginName = target.parentElement.children[0].value;
     this.setState({ isLoading: true }, () => createUser({ name: loginName }));
-    // this.setState({ logado: true });
     const { logado } = this.props;
     this.setState({ logado: true });
     console.log(logado);

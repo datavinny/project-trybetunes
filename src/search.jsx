@@ -5,8 +5,8 @@ import searchAlbumsAPI from './services/searchAlbumsAPI';
 import Header from './components';
 
 class Search extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.state = {
       isSearchBtnDisable: true,

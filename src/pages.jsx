@@ -9,8 +9,8 @@ import ProfileEdit from './ProfileEdit';
 import NotFound from './NotFound';
 
 class Pages extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.state = {
       logado: false,
@@ -27,22 +27,22 @@ class Pages extends Component {
           </Route>
         </div>
         <div data-testid="page-search">
-          <Route path="/search" component={ Search } />
+          <Route exact path="/search" component={ Search } />
         </div>
         <div data-testid="page-album">
-          <Route path="/album/:id" component={ Album } />
+          <Route exact path="/album/:id" component={ Album } />
         </div>
         <div data-testid="page-favorites">
-          <Route path="/favorites" component={ Favorites } />
+          <Route exact path="/favorites" component={ Favorites } />
         </div>
         <div data-testid="page-profile">
-          <Route path="/profile" component={ Profile } />
+          <Route exact path="/profile" component={ Profile } />
         </div>
         <div data-testid="page-profile-edit">
-          <Route path="/profile/edit" component={ ProfileEdit } />
+          <Route exact path="/profile/edit" component={ ProfileEdit } />
         </div>
         <div data-testid="page-not-found">
-          <Route path="" component={ NotFound } />
+          <Route exact path="" component={ NotFound } />
         </div>
       </BrowserRouter>
     );
