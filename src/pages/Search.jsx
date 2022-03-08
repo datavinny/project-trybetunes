@@ -31,14 +31,15 @@ class Search extends Component {
   }
 
   async pesquisar({ target }) {
+    this.setState({ isLoading: true });
     const pesquisa = target.parentElement.children[0].value;
     const arrAlbums = await searchAlbumsAPI(pesquisa);
     this.setState({ albums: arrAlbums });
     if (arrAlbums.length > 0) {
       this.setState({ isAlbumEmpty: false });
-      this.setState({ artistName: arrAlbums[0].artistName });
+      this.setState({ artistName: arrAlbums[0].artistName, isLoading: false });
     } else {
-      this.setState({ isAlbumEmpty: true });
+      this.setState({ isAlbumEmpty: true, isLoading: false });
     }
     target.parentElement.children[0].value = '';
   }
@@ -72,6 +73,7 @@ class Search extends Component {
                   <div>
                     <h2>
                       Resultado de álbuns de:
+                      {' '}
                       {artistName}
                     </h2>
                     {albums.map(({ collectionName, collectionId }, index) => (
