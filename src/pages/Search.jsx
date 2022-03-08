@@ -34,10 +34,11 @@ class Search extends Component {
     this.setState({ isLoading: true });
     const pesquisa = target.parentElement.children[0].value;
     const arrAlbums = await searchAlbumsAPI(pesquisa);
-    this.setState({ albums: arrAlbums });
     if (arrAlbums.length > 0) {
-      this.setState({ isAlbumEmpty: false });
-      this.setState({ artistName: pesquisa, isLoading: false });
+      this.setState({ artistName: pesquisa,
+        isLoading: false,
+        isAlbumEmpty: false,
+        albums: arrAlbums });
     } else {
       this.setState({ isAlbumEmpty: true, isLoading: false });
     }
