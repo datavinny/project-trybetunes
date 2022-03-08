@@ -1,5 +1,5 @@
 import React from 'react';
-import Pages from './pages';
+import Pages from './Pages';
 
 class App extends React.Component {
   render() {

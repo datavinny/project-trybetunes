@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Redirect, Route } from 'react-router-dom';
-import Login from './Login';
-import Search from './search';
-import Album from './Album';
-import Favorites from './Favorites';
-import Profile from './Profile';
-import ProfileEdit from './ProfileEdit';
-import NotFound from './NotFound';
+import Login from './pages/Login';
+import Search from './pages/Search';
+import Album from './pages/Album';
+import Favorites from './pages/Favorites';
+import Profile from './pages/Profile';
+import ProfileEdit from './pages/ProfileEdit';
+import NotFound from './pages/NotFound';
 
 class Pages extends Component {
   constructor(props) {

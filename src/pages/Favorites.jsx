@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import Header from './components';
+import Header from '../components/Header';
 
-class Album extends Component {
+class Favorites extends Component {
   render() {
     return (
       <div>
@@ -11,4 +11,4 @@ class Album extends Component {
   }
 }
 
-export default Album;
+export default Favorites;

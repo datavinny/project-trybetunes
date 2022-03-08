@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import Header from './components';
+import Header from '../components/Header';
 
-class Favorites extends Component {
+class ProfileEdit extends Component {
   render() {
     return (
       <div>
@@ -11,4 +11,4 @@ class Favorites extends Component {
   }
 }
 
-export default Favorites;
+export default ProfileEdit;

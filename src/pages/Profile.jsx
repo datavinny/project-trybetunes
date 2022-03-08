@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import Header from './components';
+import Header from '../components/Header';
 
-class ProfileEdit extends Component {
+class Profile extends Component {
   render() {
     return (
       <div>
@@ -11,4 +11,4 @@ class ProfileEdit extends Component {
   }
 }
 
-export default ProfileEdit;
+export default Profile;
