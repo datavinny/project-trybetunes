@@ -3,6 +3,8 @@ import propTypes from 'prop-types';
 import Header from '../components/Header';
 import getMusics from '../services/musicsAPI';
 import MusicCard from '../components/MusicCard';
+import Loading from '../components/Loading';
+import { addSong } from '../services/favoriteSongsAPI';
 
 class Album extends Component {
   constructor(props) {
@@ -12,9 +14,11 @@ class Album extends Component {
       album: [],
       artistName: '',
       albumName: '',
+      isLoading: false,
     };
 
     this.pegarMusica = this.pegarMusica.bind(this);
+    this.favoritar = this.favoritar.bind(this);
   }
 
   componentDidMount() {
@@ -31,23 +35,35 @@ class Album extends Component {
       albumName: musics[0].collectionName });
   }
 
+  async favoritar({ target }) {
+    this.setState({ isLoading: true });
+    const { album } = this.state;
+    const objAlvo = album[target.name];
+    await addSong(objAlvo);
+    this.setState({ isLoading: false });
+    console.log(target.checked)
+  }
+
   render() {
-    const { album, artistName, albumName } = this.state;
+    const { album, artistName, albumName, isLoading } = this.state;
     return (
-      <div data-testid="page-album">
-        <Header />
-        <h1 data-testid="artist-name">{artistName}</h1>
-        <h2 data-testid="album-name">{albumName}</h2>
-        {album.map(({ trackName, previewUrl, trackId }, index) => (
-          <MusicCard
-            musicName={ trackName }
-            previewUrl={ previewUrl }
-            trackId={ trackId }
-            key={ index }
-            index={ index }
-          />
-        ))}
-      </div>
+      isLoading ? <Loading />
+        : (
+          <div data-testid="page-album">
+            <Header />
+            <h1 data-testid="artist-name">{artistName}</h1>
+            <h2 data-testid="album-name">{albumName}</h2>
+            {album.map(({ trackName, previewUrl, trackId }, index) => (
+              <MusicCard
+                musicName={ trackName }
+                previewUrl={ previewUrl }
+                trackId={ trackId }
+                key={ index }
+                favoritar={ this.favoritar }
+                index={ index }
+              />
+            ))}
+          </div>)
     );
   }
 }
