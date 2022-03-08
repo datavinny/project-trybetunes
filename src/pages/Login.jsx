@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import propTypes from 'prop-types';
 import { createUser } from '../services/userAPI';
-import Loading from '../loading';
+import Loading from '../components/Loading';
 
 class Login extends Component {
   constructor(props) {
@@ -39,7 +39,7 @@ class Login extends Component {
     return (
       isLoading ? <Loading />
         : (
-          <div>
+          <div data-testid="page-login">
             <input
               type="text"
               onChange={ this.verifyLength }

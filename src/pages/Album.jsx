@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Header from '../components/Header';
 import getMusics from '../services/musicsAPI';
-// import MusicCard from './MusicCard';
+// import MusicCard from '../componentsMusicCard';
 
 class Album extends Component {
   constructor(props) {
@@ -24,7 +24,7 @@ class Album extends Component {
   render() {
     const { musics, artistName, albumName } = this.state;
     return (
-      <div>
+      <div data-testid="page-album">
         <Header />
         <h1 data-testid="artist-name">{artistName}</h1>
         <h2 data-testid="album-name">{albumName}</h2>

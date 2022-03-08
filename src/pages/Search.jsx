@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import Loading from '../loading';
+import Loading from '../components/Loading';
 import searchAlbumsAPI from '../services/searchAlbumsAPI';
 import Header from '../components/Header';
 
@@ -37,6 +37,8 @@ class Search extends Component {
     if (arrAlbums.length > 0) {
       this.setState({ isAlbumEmpty: false });
       this.setState({ artistName: arrAlbums[0].artistName });
+    } else {
+      this.setState({ isAlbumEmpty: true });
     }
     target.parentElement.children[0].value = '';
   }
@@ -47,7 +49,7 @@ class Search extends Component {
     return (
       isLoading ? <Loading />
         : (
-          <>
+          <div data-testid="page-search">
             <div>
               <Header />
             </div>
@@ -88,7 +90,7 @@ class Search extends Component {
                   </div>
                 )}
             </div>
-          </>
+          </div>
         )
     );
   }

@@ -27,30 +27,16 @@ class Pages extends Component {
     const { isUserLoggedIn } = this.state;
     return (
       <BrowserRouter>
-        <div data-testid="page-login">
-          <Route exact path="/">
-            {isUserLoggedIn ? <Redirect to="/search" />
-              : <Login setUserIn={ this.setUserIn } />}
-          </Route>
-        </div>
-        <div data-testid="page-search">
-          <Route exact path="/search" component={ Search } />
-        </div>
-        <div data-testid="page-album">
-          <Route exact path="/album/:id" component={ Album } />
-        </div>
-        <div data-testid="page-favorites">
-          <Route exact path="/favorites" component={ Favorites } />
-        </div>
-        <div data-testid="page-profile">
-          <Route exact path="/profile" component={ Profile } />
-        </div>
-        <div data-testid="page-profile-edit">
-          <Route exact path="/profile/edit" component={ ProfileEdit } />
-        </div>
-        <div data-testid="page-not-found">
-          <Route exact path="" component={ NotFound } />
-        </div>
+        <Route exact path="/">
+          {isUserLoggedIn ? <Redirect to="/search" />
+            : <Login setUserIn={ this.setUserIn } />}
+        </Route>
+        <Route exact path="/search" component={ Search } />
+        <Route exact path="/album/:id" component={ Album } />
+        <Route exact path="/favorites" component={ Favorites } />
+        <Route exact path="/profile" component={ Profile } />
+        <Route exact path="/profile/edit" component={ ProfileEdit } />
+        <Route exact path="" component={ NotFound } />
       </BrowserRouter>
     );
   }
