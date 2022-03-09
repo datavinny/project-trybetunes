@@ -37,16 +37,17 @@ class Album extends Component {
   }
 
   async favoritar({ target }) {
-    // this.setState({ isLoading: true });
+    // this.setState({ isLoading: true }); // CONFLITANTE
     const { album } = this.state;
     const objAlvo = album[target.name];
     if (target.checked === true) {
       await addSong(objAlvo);
+      // await this.setState({ isLoading: true }, () => addSong(objAlvo));
     } else {
       await removeSong(objAlvo);
     }
-    this.recuperarFavoritas();
-    // this.setState({ isLoading: false });
+    // this.recuperarFavoritas();
+    this.setState({ isLoading: false });
   }
 
   async recuperarFavoritas() {
