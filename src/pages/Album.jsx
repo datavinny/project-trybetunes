@@ -37,7 +37,7 @@ class Album extends Component {
   }
 
   async favoritar({ target }) {
-    this.setState({ isLoading: true });
+    // this.setState({ isLoading: true });
     const { album } = this.state;
     const objAlvo = album[target.name];
     if (target.checked === true) {
@@ -45,9 +45,8 @@ class Album extends Component {
     } else {
       await removeSong(objAlvo);
     }
-    // await this.recuperarFavoritas();
-    this.setState({ isLoading: false });
     this.recuperarFavoritas();
+    // this.setState({ isLoading: false });
   }
 
   async recuperarFavoritas() {
