@@ -4,7 +4,7 @@ import Header from '../components/Header';
 import getMusics from '../services/musicsAPI';
 import MusicCard from '../components/MusicCard';
 import Loading from '../components/Loading';
-import { addSong } from '../services/favoriteSongsAPI';
+import { addSong, removeSong, getFavoriteSongs } from '../services/favoriteSongsAPI';
 
 class Album extends Component {
   constructor(props) {
@@ -15,15 +15,16 @@ class Album extends Component {
       artistName: '',
       albumName: '',
       isLoading: false,
+      favoritas: [],
     };
-
     this.pegarMusica = this.pegarMusica.bind(this);
     this.favoritar = this.favoritar.bind(this);
+    this.recuperarFavoritas = this.recuperarFavoritas.bind(this);
   }
 
   componentDidMount() {
     this.pegarMusica();
-    // console.log(this.props.match.params);
+    this.recuperarFavoritas();
   }
 
   async pegarMusica() {
@@ -39,9 +40,27 @@ class Album extends Component {
     this.setState({ isLoading: true });
     const { album } = this.state;
     const objAlvo = album[target.name];
-    await addSong(objAlvo);
+    if (target.checked === true) {
+      await addSong(objAlvo);
+    } else {
+      await removeSong(objAlvo);
+    }
+    this.recuperarFavoritas();
     this.setState({ isLoading: false });
-    console.log(target.checked)
+  }
+
+  async recuperarFavoritas() {
+    this.setState({ isLoading: true });
+    const arrFavoritas = await getFavoriteSongs();
+    const idFavoritas = arrFavoritas.map(({ trackId }) => trackId);
+    this.setState({ favoritas: idFavoritas, isLoading: false });
+    const { favoritas } = this.state;
+    if (favoritas.length > 0) {
+      favoritas.forEach((element) => {
+        const inputFavorito = document.getElementById(element);
+        inputFavorito.checked = true;
+      });
+    }
   }
 
   render() {
@@ -53,16 +72,18 @@ class Album extends Component {
             <Header />
             <h1 data-testid="artist-name">{artistName}</h1>
             <h2 data-testid="album-name">{albumName}</h2>
-            {album.map(({ trackName, previewUrl, trackId }, index) => (
-              <MusicCard
-                musicName={ trackName }
-                previewUrl={ previewUrl }
-                trackId={ trackId }
-                key={ index }
-                favoritar={ this.favoritar }
-                index={ index }
-              />
-            ))}
+            <div>
+              {album.map(({ trackName, previewUrl, trackId }, index) => (
+                <MusicCard
+                  musicName={ trackName }
+                  previewUrl={ previewUrl }
+                  trackId={ trackId }
+                  key={ index }
+                  favoritar={ this.favoritar }
+                  index={ index }
+                />
+              ))}
+            </div>
           </div>)
     );
   }
