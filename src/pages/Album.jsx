@@ -45,8 +45,9 @@ class Album extends Component {
     } else {
       await removeSong(objAlvo);
     }
-    this.recuperarFavoritas();
+    // await this.recuperarFavoritas();
     this.setState({ isLoading: false });
+    this.recuperarFavoritas();
   }
 
   async recuperarFavoritas() {
